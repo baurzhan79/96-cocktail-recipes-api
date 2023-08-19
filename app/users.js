@@ -1,24 +1,12 @@
 const express = require("express");
 const axios = require("axios");
-const { nanoid } = require("nanoid");
+const imageDownloader = require("image-downloader");
 
 const User = require("./models/User");
 const auth = require("./middleware/auth");
 
-const multer = require("multer");
 const path = require("path");
 const config = require("../config");
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, config.uploadPath);
-    },
-    filename: (req, file, cb) => {
-        cb(null, nanoid() + path.extname(file.originalname));
-    }
-});
-
-const upload = multer({ storage });
 
 const router = express.Router();
 
@@ -33,7 +21,7 @@ const createRouterMongoose = () => {
         }
     });
 
-    router.post("/facebookLogin", upload.single("image"), async (req, res) => {
+    router.post("/facebookLogin", async (req, res) => {
         const inputToken = req.body.accessToken;
         const accessToken = config.facebook.appId + "|" + config.facebook.appSecret;
         const debugTokenUrl = `https://graph.facebook.com/debug_token?input_token=${inputToken}&access_token=${accessToken}`;
@@ -56,12 +44,26 @@ const createRouterMongoose = () => {
                     facebookId: req.body.id,
                     displayName: req.body.name
                 });
-                if (req.file) user.avatar = req.file.filename;
-                else user.avatar = null;
             }
 
             user.generateToken();
             await user.save({ validateBeforeSave: false });
+
+            if (req.body.avatar) {
+                imageDownloaderOptions = {
+                    url: req.body.avatar,
+                    dest: config.uploadPath + "/" + req.body.email + ".jpg"
+                };
+
+                try {
+                    const result = await imageDownloader.image(imageDownloaderOptions);
+                    user.avatar = path.basename(result.filename);
+                    await user.save({ validateBeforeSave: false });
+                }
+                catch (err) {
+                    console.error(err)
+                }
+            }
 
             return res.send({ message: "Facebook login successful", user });
         }

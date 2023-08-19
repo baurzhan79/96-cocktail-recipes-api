@@ -12,7 +12,7 @@ module.exports = {
         url: "mongodb://localhost"
     },
     facebook: {
-        appId: "318884733918465",
-        appSecret: "51306a1e6459a65235c44c93d2ccae7f"
+        appId: "700645038747371",
+        appSecret: "1ef2cb163be5c143d6abec498fb4c746"
     }
 };

@@ -16,14 +16,9 @@ db.once("open", async () => {
 
     await User.create(
         {
-            facebookId: "123456",
-            displayName: "user",
-            role: "user",
-            token: nanoid()
-        },
-        {
-            facebookId: "123456",
+            facebookId: config.facebook.appId,
             displayName: "admin",
+            avatar: "admin.jpeg",
             role: "admin",
             token: nanoid()
         }
