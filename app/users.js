@@ -3,6 +3,7 @@ const axios = require("axios");
 const { nanoid } = require("nanoid");
 
 const User = require("./models/User");
+const auth = require("./middleware/auth");
 
 const multer = require("multer");
 const path = require("path");
@@ -67,6 +68,14 @@ const createRouterMongoose = () => {
         catch (error) {
             return res.status(401).send({ message: "Facebook token incorrect" });
         }
+    });
+
+    router.delete("/sessions", auth, async (req, res) => {
+        const success = { message: "Success" };
+        const user = req.user;
+        user.token = "";
+        user.save({ validateBeforeSave: false });
+        return res.send(success);
     });
 
     return router;
