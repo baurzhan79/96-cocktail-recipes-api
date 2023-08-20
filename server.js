@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 const config = require("./config");
 const users = require("./app/users");
+const cocktails = require("./app/cocktails");
 
 const app = express();
 const port = 8000;
@@ -22,6 +23,7 @@ const runMongoose = async () => {
     console.log("mongoose connected");
 
     app.use("/users", users());
+    app.use("/cocktails", cocktails());
 
     app.listen(port, () => {
         console.log(`Server started on ${port} port!`);
