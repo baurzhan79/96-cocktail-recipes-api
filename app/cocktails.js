@@ -68,6 +68,26 @@ const createRouterMongoose = () => {
         }
     });
 
+    router.delete("/:id", async (req, res) => {
+        try {
+            await Cocktail.deleteOne({ _id: req.params.id });
+            res.send({ "message": "cocktail deleted" });
+        }
+        catch (err) {
+            res.send(err);
+        }
+    });
+
+    router.put("/:id", async (req, res) => {
+        try {
+            await Cocktail.updateOne({ _id: req.params.id }, { published: true });
+            res.send({ "message": "cocktail published" });
+        }
+        catch (err) {
+            res.send(err);
+        }
+    });
+
     return router;
 }
 

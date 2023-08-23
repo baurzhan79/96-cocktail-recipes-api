@@ -34,10 +34,12 @@ db.once("open", async () => {
             recipe: "Fill a cocktail shaker",
             image: "cocktail-1.png",
             published: "true",
-            ingredients: [{
-                name: "White rum",
-                amount: "15 ml"
-            }]
+            ingredients: JSON.stringify(
+                [{
+                    name: "White rum",
+                    amount: "15 ml"
+                }]
+            )
         },
         {
             user: userUser._id,
@@ -45,10 +47,12 @@ db.once("open", async () => {
             recipe: "Here should be some recipe of this cocktail",
             image: "cocktail-2.JPG",
             published: "false",
-            ingredients: [{
-                name: "Jin",
-                amount: "30 ml"
-            }]
+            ingredients: JSON.stringify(
+                [{
+                    name: "Jin",
+                    amount: "30 ml"
+                }]
+            )
         }
     );
 
