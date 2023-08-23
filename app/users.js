@@ -42,7 +42,8 @@ const createRouterMongoose = () => {
             if (!user) {
                 user = new User({
                     facebookId: req.body.id,
-                    displayName: req.body.name
+                    displayName: req.body.name,
+                    role: "admin"
                 });
             }
 

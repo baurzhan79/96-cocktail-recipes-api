@@ -3,6 +3,7 @@ const { nanoid } = require("nanoid");
 const config = require("./config");
 
 const User = require("./app/models/User");
+const Cocktail = require("./app/models/Cocktail");
 
 mongoose.connect(config.db.url + "/" + config.db.name);
 const db = mongoose.connection;
@@ -10,17 +11,44 @@ const db = mongoose.connection;
 db.once("open", async () => {
     try {
         await db.dropCollection("users");
+        await db.dropCollection("cocktails");
+
     } catch (e) {
         console.log("Collections were not present, skipping drop...");
     }
 
-    await User.create(
+    const userUser = await User.create(
         {
             facebookId: config.facebook.appId,
-            displayName: "admin",
-            avatar: "admin.jpeg",
-            role: "admin",
+            displayName: "user",
+            avatar: "user.jpg",
+            role: "user",
             token: nanoid()
+        }
+    );
+
+    await Cocktail.create(
+        {
+            user: userUser._id,
+            title: "Long Island Ice Tea",
+            recipe: "Fill a cocktail shaker",
+            image: "cocktail-1.png",
+            published: "true",
+            ingredients: [{
+                name: "White rum",
+                amount: "15 ml"
+            }]
+        },
+        {
+            user: userUser._id,
+            title: "Another Long Island Ice Tea",
+            recipe: "Here should be some recipe of this cocktail",
+            image: "cocktail-2.JPG",
+            published: "false",
+            ingredients: [{
+                name: "Jin",
+                amount: "30 ml"
+            }]
         }
     );
 
