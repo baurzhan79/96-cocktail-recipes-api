@@ -79,9 +79,11 @@ const createRouterMongoose = () => {
     });
 
     router.put("/:id", async (req, res) => {
+        const fieldData = req.body;
+
         try {
-            await Cocktail.updateOne({ _id: req.params.id }, { published: true });
-            res.send({ "message": "cocktail published" });
+            await Cocktail.updateOne({ _id: req.params.id }, fieldData);
+            res.send({ "message": "cocktail updated" });
         }
         catch (err) {
             res.send(err);

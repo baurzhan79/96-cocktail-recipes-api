@@ -39,6 +39,12 @@ db.once("open", async () => {
                     name: "White rum",
                     amount: "15 ml"
                 }]
+            ),
+            ratings: JSON.stringify(
+                [{
+                    user: userUser._id,
+                    rating: 1
+                }]
             )
         },
         {
@@ -51,6 +57,12 @@ db.once("open", async () => {
                 [{
                     name: "Jin",
                     amount: "30 ml"
+                }]
+            ),
+            ratings: JSON.stringify(
+                [{
+                    user: userUser._id,
+                    rating: 2
                 }]
             )
         }

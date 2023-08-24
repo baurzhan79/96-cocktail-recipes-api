@@ -20,6 +20,9 @@ const CocktailSchema = new Schema(
         },
         ingredients: {
             type: Array
+        },
+        ratings: {
+            type: Array
         }
     },
     {
