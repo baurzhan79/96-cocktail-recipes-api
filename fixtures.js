@@ -32,7 +32,7 @@ db.once("open", async () => {
             user: userUser._id,
             title: "Margarita",
             recipe: "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.",
-            image: "Margarita.jpg",
+            image: "margarita.jpg",
             published: "true",
             ingredients: JSON.stringify(
                 [
@@ -65,7 +65,7 @@ db.once("open", async () => {
             user: userUser._id,
             title: "Blue Margarita",
             recipe: "Rub rim of cocktail glass with lime juice. Dip rim in coarse salt. Shake tequila, blue curacao, and lime juice with ice, strain into the salt-rimmed glass, and serve.",
-            image: "Blue Margarita.jpg",
+            image: "blue-margarita.jpg",
             published: "false",
             ingredients: JSON.stringify(
                 [
@@ -98,7 +98,7 @@ db.once("open", async () => {
             user: userUser._id,
             title: "Tommy's Margarita",
             recipe: "Shake and strain into a chilled cocktail glass.",
-            image: "Tommy's Margarita.jpg",
+            image: "tommys-margarita.jpg",
             published: "false",
             ingredients: JSON.stringify(
                 [
@@ -127,7 +127,7 @@ db.once("open", async () => {
             user: userUser._id,
             title: "Whitecap Margarita",
             recipe: "Place all ingredients in a blender and blend until smooth. This makes one drink.",
-            image: "Whitecap Margarita.jpg",
+            image: "whitecap-margarita.jpg",
             published: "true",
             ingredients: JSON.stringify(
                 [
@@ -160,7 +160,7 @@ db.once("open", async () => {
             user: userUser._id,
             title: "Strawberry Margarita",
             recipe: "Rub rim of cocktail glass with lemon juice and dip rim in salt. Shake schnapps, tequila, triple sec, lemon juice, and strawberries with ice, strain into the salt-rimmed glass, and serve.",
-            image: "Strawberry Margarita.jpg",
+            image: "strawberry-margarita.jpg",
             published: "false",
             ingredients: JSON.stringify(
                 [
